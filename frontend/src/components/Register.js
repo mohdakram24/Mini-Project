@@ -60,7 +60,8 @@ const Register = () => {
                 />
                 <div className="card bg-glass">
                   <div className="card-body px-4 py-5 px-md-5">
-                    <Formik >
+                    <Formik 
+                    initialValues={{firstName:'',lastName:'',email:'',password:''}} onSubmit={userSubmit}>
                       {({values, handleChange, handleSubmit}) => (
                           <form>
                           {/* 2 column grid layout with text inputs for the first and last names */}
@@ -69,7 +70,7 @@ const Register = () => {
                               <div className="form-outline">
                                 <input
                                   type="text"
-                                  id="form3Example1"
+                                  id="firstName"
                                   className="form-control"
                                 />
                                 <label className="form-label" htmlFor="form3Example1">
