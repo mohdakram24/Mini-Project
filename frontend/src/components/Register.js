@@ -1,20 +1,32 @@
 import React from 'react'
-import {Formik} from 'formik';
+import { Formik } from 'formik';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
-  const userSubmit = async(formdata) => {
+  const userSubmit = async (formdata) => {
     console.log(formdata);
 
     //Fetch APi Fetch is a function
     // To send request to backend and to connect front-end and back-end.
     const response = await fetch('http://localhost:7000/user/add',
-        {method: 'POST',
+      {
+        method: 'POST',
         body: JSON.stringify(formdata),
-        headers : {
-            'content-Type' : 'application/json'
+        headers: {
+          'content-Type': 'application/json'
         }
-    });
+      });
+      console.log(response.status);
+
+      if(response.status === 200){
+        console.log('user added');
+        Swal.fire({
+            icon:'success',
+            title:'Well Done',
+            text:'Registered Successfully'
+        })  
+    }
   }
   return (
     <div>
@@ -60,10 +72,10 @@ const Register = () => {
                 />
                 <div className="card bg-glass">
                   <div className="card-body px-4 py-5 px-md-5">
-                    <Formik 
-                    initialValues={{firstName:'',lastName:'',email:'',password:''}} onSubmit={userSubmit}>
-                      {({values, handleChange, handleSubmit}) => (
-                          <form>
+                    <Formik
+                      initialValues={{ firstName: '', lastName: '', email: '', password: '' }} onSubmit={userSubmit}>
+                      {({ values, handleChange, handleSubmit }) => (
+                        <form onSubmit={handleSubmit}>
                           {/* 2 column grid layout with text inputs for the first and last names */}
                           <div className="row">
                             <div className="col-md-6 mb-4">
@@ -72,6 +84,9 @@ const Register = () => {
                                   type="text"
                                   id="firstName"
                                   className="form-control"
+                                  onChange={handleChange}
+                                  value={values.firstName}
+
                                 />
                                 <label className="form-label" htmlFor="form3Example1">
                                   First name
@@ -82,8 +97,10 @@ const Register = () => {
                               <div className="form-outline">
                                 <input
                                   type="text"
-                                  id="form3Example2"
+                                  id="lastName"
                                   className="form-control"
+                                  onChange={handleChange}
+                                  value={values.lastName}
                                 />
                                 <label className="form-label" htmlFor="form3Example2">
                                   Last name
@@ -95,8 +112,10 @@ const Register = () => {
                           <div className="form-outline mb-4">
                             <input
                               type="email"
-                              id="form3Example3"
+                              id="email"
                               className="form-control"
+                              onChange={handleChange}
+                              value={values.email}
                             />
                             <label className="form-label" htmlFor="form3Example3">
                               Email address
@@ -106,8 +125,10 @@ const Register = () => {
                           <div className="form-outline mb-4">
                             <input
                               type="password"
-                              id="form3Example4"
+                              id="password"
                               className="form-control"
+                              onChange={handleChange}
+                              value={values.password}
                             />
                             <label className="form-label" htmlFor="form3Example4">
                               Password
@@ -164,7 +185,7 @@ const Register = () => {
                         </form>
                       )}
                     </Formik>
-                    
+
                   </div>
                 </div>
               </div>

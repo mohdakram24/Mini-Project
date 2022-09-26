@@ -39,6 +39,11 @@ const Header = () => {
               Register Now
             </a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              Login
+            </a>
+          </li>
         </ul>
         {/* Left links */}
         <div className="d-flex align-items-center">

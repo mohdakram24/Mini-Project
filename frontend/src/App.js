@@ -2,6 +2,8 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from './components/Register';
 import Header from './components/Header';
+import ImageEditor from './components/ImageEditor';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -9,8 +11,10 @@ function App() {
       <BrowserRouter>
       <Header/>
         <Routes>
+          <Route element={<Login/>} path="/"></Route>
           <Route element={<Register/>} path="/register"/>
-          <Route element={<Register/>} path="/"></Route>
+          <Route element={<ImageEditor/>} path="imageEditor"></Route>
+
 
 
 

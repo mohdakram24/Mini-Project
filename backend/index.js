@@ -6,6 +6,8 @@ const userRouter=require('./routers/userRouter');
 // that can be used to enable CORS with various options.
 
 const cors=require('cors');
+const filterModel = require('./models/filterModel');
+
 
 // Initialing express
 const app=express();
@@ -13,11 +15,16 @@ const app=express();
 // Providing port name
 const port=7000;
 
+
 // This will parse JSON data to javascript
 app.use(express.json());
+app.use(cors({
+    origin : ['http://localhost:3000']
+}))
 
 // Middleware
 app.use('/user',userRouter);
+app.use('/filter',filterModel);
 
 app.get("/",(req,res)=>{
     res.send("Express has started");
