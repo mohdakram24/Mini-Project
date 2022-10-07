@@ -1,11 +1,12 @@
-const { Schema, model } = require("../connection");
+const { Schema, model, Types } = require("../connection");
 
 
 
 const myschema=new Schema({
     title: String,
     image: String,
-    user: String,
+    filter: Array,
+    user: {type : Types.ObjectId, ref: 'usersCollection'},
     createdAt: Date
 
 });

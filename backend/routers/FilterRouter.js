@@ -17,4 +17,32 @@ router.post("/add", (req, res) => {
     });
 })
 
+router.get("/getall", (req, res) => {
+    console.log(req.body);
+
+    Model.find({})
+    .then((result) => {
+        console.log(result);
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
+router.get("/getbyuser/:userid", (req, res) => {
+    
+
+    Model.find({user : req.params.userid})
+    .then((result) => {
+        console.log(result);
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
 module.exports = router;

@@ -40,16 +40,18 @@ const Header = () => {
                     Register Now
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink className="nav-link" to="/">
                     Login
                   </NavLink>
-                </li>
+                </li> */}
               </ul>
               {/* Left links */}
               <div className="d-flex align-items-center">
                 <button type="button" className="btn btn-link px-3 me-2">
-                  Login
+                <NavLink className="nav-link" to="/">
+                    Login
+                  </NavLink>
                 </button>
                 <button type="button" className="btn btn-primary me-3">
                   Sign up for free
